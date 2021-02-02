@@ -1,7 +1,13 @@
-import React from 'react';
+import {React, useState} from 'react';
 import Link from "next/link";
 
 const Navbar = () => {
+
+    const [active, setActive] = useState(false);
+
+    const onClick = () => {
+        setActive(!active);
+    }
 
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -12,7 +18,7 @@ const Navbar = () => {
                     </a>
                 </Link>
 
-                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false"
+                <a onClick={onClick} role="button" className={`navbar-burger ${active ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false"
                    data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -20,7 +26,7 @@ const Navbar = () => {
                 </a>
             </div>
 
-            <div id="navbarBasicExample" className="navbar-menu">
+            <div id="navbarBasicExample" className={`navbar-menu ${active ? 'is-active' : ''}`}>
                 <div className="navbar-start">
                     <a className="navbar-item">
                         Home
